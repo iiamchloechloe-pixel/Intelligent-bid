@@ -1638,9 +1638,111 @@
     body { background: #fff; }
   }
 
+  /* ==================== LOGIN SCREEN ==================== */
+  #loginScreen {
+    position: fixed; inset: 0; z-index: 2000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #3b82f6 100%);
+    overflow: hidden;
+  }
+  #loginScreen.hidden { display: none; }
+  .login-bg-deco {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(255,255,255,0.14), transparent 38%),
+      radial-gradient(circle at 85% 78%, rgba(255,255,255,0.12), transparent 42%);
+  }
+  .login-card {
+    position: relative; z-index: 1;
+    width: 400px; max-width: calc(100vw - 40px);
+    background: #fff; border-radius: 16px;
+    box-shadow: 0 24px 64px rgba(2,6,23,0.32);
+    padding: 36px 36px 30px;
+    animation: loginIn 0.4s cubic-bezier(.2,.8,.3,1);
+  }
+  @keyframes loginIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .login-brand { display: flex; align-items: center; gap: 13px; margin-bottom: 6px; }
+  .login-logo { width: 46px; height: 46px; border-radius: 12px; background: linear-gradient(135deg, #2563eb, #3b82f6); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 6px 16px rgba(37,99,235,0.35); }
+  .login-title { font-size: 20px; font-weight: 700; color: #1f2937; letter-spacing: 0.5px; }
+  .login-subtitle { font-size: 11px; color: #94a3b8; margin-top: 3px; letter-spacing: 0.3px; }
+  .login-welcome { font-size: 13px; color: #64748b; margin: 18px 0 22px; }
+  .login-field { margin-bottom: 16px; }
+  .login-field > label { display: block; font-size: 13px; color: #374151; font-weight: 500; margin-bottom: 8px; }
+  .login-input { position: relative; display: flex; align-items: center; }
+  .login-input > svg { position: absolute; left: 13px; color: #94a3b8; pointer-events: none; }
+  .login-input input {
+    width: 100%; box-sizing: border-box; height: 44px;
+    border: 1px solid #e5e7eb; border-radius: 9px;
+    padding: 0 40px 0 40px; font-size: 14px; color: #1f2937;
+    outline: none; transition: border-color 0.15s, box-shadow 0.15s; font-family: inherit;
+  }
+  .login-input input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
+  .login-input input::placeholder { color: #b6c0cd; }
+  .login-eye { position: absolute; right: 12px; color: #94a3b8; cursor: pointer; display: flex; }
+  .login-eye:hover { color: #2563eb; }
+  .login-err { font-size: 12px; color: #ef4444; min-height: 16px; margin-top: 5px; }
+  .login-input.bad input { border-color: #ef4444; }
+  .login-row { display: flex; align-items: center; justify-content: space-between; margin: 2px 0 22px; }
+  .login-remember { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #64748b; cursor: pointer; }
+  .login-remember input { width: 15px; height: 15px; accent-color: #2563eb; cursor: pointer; }
+  .login-forgot { font-size: 13px; color: #2563eb; cursor: pointer; }
+  .login-forgot:hover { text-decoration: underline; }
+  .login-btn {
+    width: 100%; height: 46px; border: none; border-radius: 9px; cursor: pointer;
+    background: linear-gradient(135deg, #2563eb, #3b82f6); color: #fff;
+    font-size: 15px; font-weight: 600; letter-spacing: 4px;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.32); transition: filter 0.15s, transform 0.05s;
+  }
+  .login-btn:hover { filter: brightness(1.06); }
+  .login-btn:active { transform: translateY(1px); }
+  .login-hint { text-align: center; font-size: 12px; color: #94a3b8; margin-top: 18px; }
+  .login-hint b { color: #2563eb; }
+  .login-foot { position: relative; z-index: 1; margin-top: 24px; font-size: 12px; color: rgba(255,255,255,0.75); text-align: center; padding: 0 20px; }
+
 </style>
 </head>
 <body>
+<!-- ==================== LOGIN SCREEN ==================== -->
+<div id="loginScreen">
+  <div class="login-bg-deco"></div>
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-logo">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      </div>
+      <div>
+        <div class="login-title">智能评标系统</div>
+        <div class="login-subtitle">Intelligent Bid Evaluation System</div>
+      </div>
+    </div>
+    <div class="login-welcome">欢迎登录，请输入您的账号信息</div>
+    <div class="login-field">
+      <label>账号</label>
+      <div class="login-input">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <input type="text" id="loginUser" placeholder="请输入账号" value="admin" autocomplete="username" />
+      </div>
+      <div class="login-err" id="loginUserErr"></div>
+    </div>
+    <div class="login-field">
+      <label>密码</label>
+      <div class="login-input">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <input type="password" id="loginPass" placeholder="请输入密码" autocomplete="current-password" />
+        <span class="login-eye" id="loginEye"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
+      </div>
+      <div class="login-err" id="loginPassErr"></div>
+    </div>
+    <div class="login-row">
+      <label class="login-remember"><input type="checkbox" id="loginRemember" checked /><span>记住我</span></label>
+      <a class="login-forgot" id="loginForgot">忘记密码？</a>
+    </div>
+    <button class="login-btn" id="loginBtn">登 录</button>
+    <div class="login-hint">演示账号：<b>admin</b> ，密码任意</div>
+  </div>
+  <div class="login-foot">© 2026 智能评标系统 · 人工智能辅助评标标准化管理平台</div>
+</div>
+
 <div class="app">
   <!-- ==================== SIDEBAR ==================== -->
   <aside class="sidebar">
@@ -6217,7 +6319,7 @@
 
   document.getElementById('logoutBtn').addEventListener('click', () => {
     closeTopbarMenus();
-    askDelete('退出登录', '确定要退出当前账号吗？', () => showToast('已退出登录（演示）'), '确认退出');
+    askDelete('退出登录', '确定要退出当前账号吗？', () => { showLoginScreen(); showToast('已安全退出'); }, '确认退出');
   });
 
   /* ============================================================
@@ -6278,6 +6380,44 @@
     downloadBlob(new Blob([csv], { type: 'text/csv;charset=utf-8;' }), '数据统计报告_' + todayStr() + '.csv');
     showToast('数据统计报告已导出');
   });
+
+  /* ============================================================
+     LOGIN SCREEN
+     ============================================================ */
+  const loginScreen = document.getElementById('loginScreen');
+  function showLoginScreen() {
+    document.getElementById('loginPass').value = '';
+    document.getElementById('loginPassErr').textContent = '';
+    document.getElementById('loginUserErr').textContent = '';
+    document.getElementById('loginPass').closest('.login-input').classList.remove('bad');
+    document.getElementById('loginUser').closest('.login-input').classList.remove('bad');
+    loginScreen.classList.remove('hidden');
+  }
+  function doLogin() {
+    const userEl = document.getElementById('loginUser'), passEl = document.getElementById('loginPass');
+    const user = userEl.value.trim(), pass = passEl.value;
+    let ok = true;
+    const setErr = (which, msg) => {
+      document.getElementById('login'+which+'Err').textContent = msg;
+      document.getElementById('login'+which).closest('.login-input').classList.toggle('bad', !!msg);
+      if (msg) ok = false;
+    };
+    setErr('User', user ? '' : '请输入账号');
+    setErr('Pass', pass ? '' : '请输入密码');
+    if (!ok) return;
+    if (user !== 'admin') { setErr('User', '账号不存在，请使用演示账号 admin'); return; }
+    loginScreen.classList.add('hidden');
+    showToast('登录成功，欢迎回来');
+  }
+  document.getElementById('loginBtn').addEventListener('click', doLogin);
+  document.getElementById('loginUser').addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('loginPass').focus(); });
+  document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+  document.getElementById('loginEye').addEventListener('click', function() {
+    const p = document.getElementById('loginPass');
+    p.type = p.type === 'password' ? 'text' : 'password';
+    this.style.color = p.type === 'text' ? '#2563eb' : '';
+  });
+  document.getElementById('loginForgot').addEventListener('click', () => showToast('请联系系统管理员重置密码（演示）'));
 
 </script>
 </body>
